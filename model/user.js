@@ -6,9 +6,14 @@ const userSchema = new mongoose.Schema({
     phoneNumber: {type: String, required:true, unique: true,minlength:11,maxlength:11},
     name: {type:String,required:true},
     password: {type: String, required:true},
-    address: String,
+    city: String,
     type:{type:Boolean,required:true},
-    bloodGroup:[Number]
+    bloodGroup:[Number],
+    requests:[{
+        city:{type:String,required:true},
+        bloodGroup: {type:Number,required:true},
+        bottles:{type:Number,required:true}
+    }]
 });
 
 userSchema.pre('save',function(next){
