@@ -107,7 +107,7 @@ router.post('/request',auth,function (req,res) {
 });
 
 router.put('/bloodGroup',auth,function (req,res) {
-  user.update({_id:req.UserData.user._id},{$push:
+  user.updateOne({_id:req.UserData.user._id},{$push:
         {bloodGroup:req.body.bloodGroup}
   }, (err) =>{
     if (err)
