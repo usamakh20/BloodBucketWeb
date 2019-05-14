@@ -83,11 +83,13 @@ router.put('/user',auth,function (req,res) {
 });
 
 router.get('/request',auth,function (req,res) {
-  user.find({bloodGroup: req.UserData.user.requests[0].bloodGroup,city:req.UserData.user.requests[0].city}, (err, users) =>{
-    if (err) return res.status(500).send(err);
+  if(req.UserData.user.requests.length>0)
+    user.find({bloodGroup: req.UserData.user.requests[0].bloodGroup,city:req.UserData.user.requests[0].city}, (err, users) =>{
+      if (err) return res.status(500).send(err);
 
-    return res.status(200).send(users);
-  });
+      return res.status(200).send(users);
+    });
+  else return res.status(200).send([]);
 });
 
 router.post('/request',auth,function (req,res) {
